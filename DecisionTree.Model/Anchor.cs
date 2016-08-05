@@ -1,11 +1,9 @@
-using System.ComponentModel.DataAnnotations;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DecisionTree.Model
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-
     [Table("Anchor")]
     public partial class Anchor
     {
@@ -15,13 +13,10 @@ namespace DecisionTree.Model
             Connections = new HashSet<Connection>();
         }
 
-        [Key]
         public Guid Id { get; set; }
 
-        [ForeignKey("Node")]
         public Guid? NodeId { get; set; }
 
-        [ForeignKey("AnchorType")]
         public int AnchorTypeId { get; set; }
 
         public virtual AnchorType AnchorType { get; set; }
@@ -30,5 +25,7 @@ namespace DecisionTree.Model
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Connection> Connections { get; set; }
+
+        public virtual ICollection<Connection> Connections1 { get; set; }
     }
 }

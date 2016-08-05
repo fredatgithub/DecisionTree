@@ -1,10 +1,10 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace DecisionTree.Model
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-
     [Table("Node")]
     public partial class Node
     {
@@ -14,17 +14,14 @@ namespace DecisionTree.Model
             Anchors = new HashSet<Anchor>();
         }
 
-        [Key]
         public Guid Id { get; set; }
 
         [Required]
         [StringLength(100)]
         public string Name { get; set; }
 
-        [ForeignKey("NodeType")]
         public int NodeTypeId { get; set; }
 
-        [ForeignKey("Graph")]
         public Guid? GraphId { get; set; }
 
         public double PosX { get; set; }

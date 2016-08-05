@@ -1,10 +1,10 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace DecisionTree.Model
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-
     [Table("Graph")]
     public partial class Graph
     {
@@ -14,7 +14,6 @@ namespace DecisionTree.Model
             Nodes = new HashSet<Node>();
         }
 
-        [Key]
         public Guid Id { get; set; }
 
         [Required]

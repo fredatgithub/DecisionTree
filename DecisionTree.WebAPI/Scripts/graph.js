@@ -221,8 +221,8 @@ jsPlumb.ready(function () {
             jsPlumb.clearDragSelection();
             $(".window").each(function () { $(this).removeClass("selected-node"); });
             $(this).addClass("selected-node");
-            jsPlumb.addToDragSelection($(this));
+            //jsPlumb.addToDragSelection($(this));
         }
-        jsPlumb.repaint($(this));
+        jsPlumb.repaintEverything();
     });
 });
