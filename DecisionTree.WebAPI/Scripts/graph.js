@@ -177,7 +177,7 @@ function diagramContainer_Click(event) {
         });
     }
 }
-//HELLO
+//WHY
 function loadDiagram(graph) {
     
 }
