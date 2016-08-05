@@ -4164,7 +4164,7 @@
             return results.length == 1 ? results[0] : results;
         };
 
-        this.addEndpoints = function (el, endpoints, referenceParams) {
+        this.addQuestionEndpoints = function (el, endpoints, referenceParams) {
             var results = [];
             for (var i = 0, j = endpoints.length; i < j; i++) {
                 var e = _currentInstance.addEndpoint(el, endpoints[i], referenceParams);
@@ -4952,7 +4952,7 @@
          * Creates an anchor with the given params.
          *
          *
-         * Returns: The newly created Anchor.
+         * Returns: The newly created SourceAnchor.
          * Throws: an error if a named anchor was not found.
          */
         this.makeAnchor = function () {
@@ -5029,7 +5029,7 @@
         };
 
         /**
-         * Makes a dynamic anchor from the given list of anchors (which may be in shorthand notation as strings or dimension arrays, or Anchor
+         * Makes a dynamic anchor from the given list of anchors (which may be in shorthand notation as strings or dimension arrays, or SourceAnchor
          * objects themselves) and the given, optional, anchorSelector function (jsPlumb uses a default if this is not provided; most people will
          * not need to provide this - i think).
          */
@@ -5051,7 +5051,7 @@
 
             ep.anchor = ep.anchor ||
                 _instance.Defaults.Anchors[epIndex] ||
-                _instance.Defaults.Anchor;
+                _instance.Defaults.SourceAnchor;
 
             ep.endpoint = ep.endpoint ||
                 _instance.Defaults.Endpoints[epIndex] ||
@@ -9448,11 +9448,11 @@
     });
 
     /**
-     * An Anchor that floats. its orientation is computed dynamically from
+     * An SourceAnchor that floats. its orientation is computed dynamically from
      * its position relative to the anchor it is floating relative to.  It is used when creating
      * a connection through drag and drop.
      *
-     * TODO FloatingAnchor could totally be refactored to extend Anchor just slightly.
+     * TODO FloatingAnchor could totally be refactored to extend SourceAnchor just slightly.
      */
     _jp.FloatingAnchor = function (params) {
 
@@ -9534,9 +9534,9 @@
     };
 
     /* 
-     * A DynamicAnchor is an Anchor that contains a list of other Anchors, which it cycles
+     * A DynamicAnchor is an SourceAnchor that contains a list of other Anchors, which it cycles
      * through at compute time to find the one that is located closest to
-     * the center of the target element, and returns that Anchor's compute
+     * the center of the target element, and returns that SourceAnchor's compute
      * method result. this causes endpoints to follow each other with
      * respect to the orientation of their target elements, which is a useful
      * feature for some applications.
@@ -9732,7 +9732,7 @@
         var anchorCount = params.anchorCount || 60,
             shape = params.shape;
 
-        if (!shape) throw new Error("no shape supplied to Perimeter Anchor type");
+        if (!shape) throw new Error("no shape supplied to Perimeter SourceAnchor type");
 
         var _circle = function () {
                 var r = 0.5, step = Math.PI * 2 / anchorCount, current = 0, a = [];
@@ -9829,7 +9829,7 @@
                 return o;
             };
 
-        if (!_shapes[shape]) throw new Error("Shape [" + shape + "] is unknown by Perimeter Anchor type");
+        if (!_shapes[shape]) throw new Error("Shape [" + shape + "] is unknown by Perimeter SourceAnchor type");
 
         var da = _shapes[shape](params);
         if (params.rotation) da = _rotate(da, params.rotation);

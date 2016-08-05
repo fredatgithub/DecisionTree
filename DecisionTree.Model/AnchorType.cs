@@ -5,37 +5,22 @@ namespace DecisionTree.Model
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("Node")]
-    public partial class Node
+    [Table("AnchorType")]
+    public partial class AnchorType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Node()
+        public AnchorType()
         {
             Anchors = new HashSet<Anchor>();
         }
 
-        [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
-        [StringLength(100)]
+        [StringLength(50)]
         public string Name { get; set; }
-
-        [ForeignKey("NodeType")]
-        public int NodeTypeId { get; set; }
-
-        [ForeignKey("Graph")]
-        public Guid? GraphId { get; set; }
-
-        public double PosX { get; set; }
-
-        public double PosY { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Anchor> Anchors { get; set; }
-
-        public virtual Graph Graph { get; set; }
-
-        public virtual NodeType NodeType { get; set; }
     }
 }

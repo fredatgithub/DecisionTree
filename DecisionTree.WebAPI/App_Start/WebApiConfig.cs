@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.OData.Builder;
 using System.Web.OData.Extensions;
 using DecisionTree.Model;
+using DecisionTree.Repository;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 using Microsoft.OData.Edm;

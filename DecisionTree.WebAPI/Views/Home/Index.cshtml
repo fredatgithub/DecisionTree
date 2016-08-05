@@ -1,65 +1,7 @@
-﻿<div id="canvas" class="jtk-demo-canvas">
-    <div id="node1" class="jtk-node window">I'm node.</div>
-    <div id="node2" class="jtk-node window">I'm other node</div>
-
-    <script>
-        jsPlumb.ready(function() {
-            var instance = window.jsp = jsPlumb.getInstance({
-                Container:"canvas"
-            });
-
-            var sourceEndpoint = {
-                endpoint: "Dot",
-                paintStyle: {
-                    strokeStyle: "#7AB02C",
-                    fillStyle: "transparent",
-                    radius: 7,
-                    lineWidth: 3
-                },
-                isSource: true,
-                connector: ["Flowchart", { stub: [40, 60], gap: 10, cornerRadius: 5, alwaysRespectStubs: true }],
-                //connectorStyle: connectorPaintStyle,
-                //hoverPaintStyle: endpointHoverStyle,
-                //connectorHoverStyle: connectorHoverStyle,
-                dragOptions: {},
-                overlays: [
-                    [
-                        "Label", {
-                            location: [0.5, 1.5],
-                            label: "Drag",
-                            cssClass: "endpointSourceLabel",
-                            visible: false
-                        }
-                    ]
-                ]
-            };
-
-            var _addEndpoints = function (toId) {
-                instance.addEndpoint(toId, sourceEndpoint,
-                    {
-                        anchor: "Left", uuid: toId + "Input"
-                    });
-
-                instance.addEndpoint(toId, sourceEndpoint,
-                    {
-                        anchor: [1, .33, 1, 0], uuid: toId + "Output1"
-                    });
-
-                instance.addEndpoint(toId, sourceEndpoint,
-                    {
-                        anchor: [1, .66, 1, 0], uuid: toId + "Output2"
-                    });
-            };
-
-            instance.batch(function () {
-                _addEndpoints("node1");
-                _addEndpoints("node2");
-                instance.connect({ uuids: ["node1Output1", "node2Input"], editable: false });
-            });
-
-            instance.draggable(jsPlumb.getSelector(".window"), { grid: [20, 20] });
-
-            //jsPlumb.fire("jsPlumbDemoLoaded", instance);
-        });
-    </script>
+﻿<div id="canvas" class="graph-canvas" style="position: relative">
+    <div id="rubberband" class="selection-rect"></div>
 </div>
+<a id="clear-button" class="button">Clear Graph</a>
+<a id="add-button" class="button">Add Node</a>
+
+<script src="~/Scripts/graph.js"></script>

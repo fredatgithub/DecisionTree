@@ -9,12 +9,9 @@
     @Scripts.Render("~/bundles/jsplumb")
 </head>
 <body>
-    <div class="container body-content">
-        @RenderBody()
-   
-    </div>
+@RenderBody()
 
-    @Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

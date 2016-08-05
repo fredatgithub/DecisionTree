@@ -12,23 +12,16 @@ namespace DecisionTree.Repository
         {
         }
 
+        public virtual DbSet<Anchor> Anchors { get; set; }
+        public virtual DbSet<AnchorType> AnchorTypes { get; set; }
+        public virtual DbSet<Connection> Connections { get; set; }
+        public virtual DbSet<Graph> Graphs { get; set; }
         public virtual DbSet<Node> Nodes { get; set; }
+        public virtual DbSet<NodeType> NodeTypes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Node>()
-                .Property(e => e.Name)
-                .IsUnicode(false);
 
-            modelBuilder.Entity<Node>()
-                .HasOptional(n => n.FailNode)
-                .WithMany()
-                .HasForeignKey(n => n.FailNodeId);
-
-            modelBuilder.Entity<Node>()
-                .HasOptional(n => n.PassNode)
-                .WithMany()
-                .HasForeignKey(n => n.PassNodeId);
         }
     }
 }

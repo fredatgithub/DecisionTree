@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using System.Web.ModelBinding;
 using System.Web.OData;
 using System.Web.OData.Query;
 using System.Web.OData.Routing;
@@ -27,7 +23,7 @@ namespace DecisionTree.WebAPI.Controllers
     */
     public class NodesController : ODataController
     {
-        private static ODataValidationSettings _validationSettings = new ODataValidationSettings();
+        private static readonly ODataValidationSettings validationSettings = new ODataValidationSettings();
         private readonly DecisionTreeContext context;
 
         public NodesController()
@@ -40,27 +36,16 @@ namespace DecisionTree.WebAPI.Controllers
         [EnableQuery]
         public IHttpActionResult GetNodes()
         {
-            return Ok<IEnumerable<Node>>(context.Nodes);
+            return Ok<IEnumerable<Node>>(context.Nodes.Include("Anchors"));
         }
 
-        // GET: odata/Nodes(5)
+        // GET: odata/Nodes(368b4443-1629-4f7a-a7e0-62e2e2047276)
         public IHttpActionResult GetNode([FromODataUri] System.Guid key, ODataQueryOptions<Node> queryOptions)
         {
-            // validate the query.
-            try
-            {
-                queryOptions.Validate(_validationSettings);
-            }
-            catch (ODataException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-
-            // return Ok<Node>(node);
-            return StatusCode(HttpStatusCode.NotImplemented);
+            return Ok(context.Nodes.FirstOrDefault(x => x.Id == key));
         }
 
-        // PUT: odata/Nodes(5)
+        // PUT: odata/Nodes(368b4443-1629-4f7a-a7e0-62e2e2047276)
         public IHttpActionResult Put([FromODataUri] System.Guid key, Delta<Node> delta)
         {
             Validate(delta.GetEntity());
@@ -94,7 +79,7 @@ namespace DecisionTree.WebAPI.Controllers
             return StatusCode(HttpStatusCode.NotImplemented);
         }
 
-        // PATCH: odata/Nodes(5)
+        // PATCH: odata/Nodes(368b4443-1629-4f7a-a7e0-62e2e2047276)
         [AcceptVerbs("PATCH", "MERGE")]
         public IHttpActionResult Patch([FromODataUri] System.Guid key, Delta<Node> delta)
         {
@@ -115,7 +100,7 @@ namespace DecisionTree.WebAPI.Controllers
             return StatusCode(HttpStatusCode.NotImplemented);
         }
 
-        // DELETE: odata/Nodes(5)
+        // DELETE: odata/Nodes(368b4443-1629-4f7a-a7e0-62e2e2047276)
         public IHttpActionResult Delete([FromODataUri] System.Guid key)
         {
             // TODO: Add delete logic here.
