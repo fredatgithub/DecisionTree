@@ -178,7 +178,12 @@ function diagramContainer_Click(event) {
     }
 }
 
+function loadDiagram(graph) {
+    
+}
+
 jsPlumb.ready(function () {
+    
     jsPlumb.setContainer("canvas");
     $("#canvas").mousedown(diagramContainer_MouseDown);
     $("#canvas").mousemove(diagramContainer_MouseMove);
